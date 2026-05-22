@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuela Sandoval Quintana | Diseñadora Industrial</title>
+    <meta name="description" content="Portafolio profesional de Manuela Sandoval (MASAKI). Proyectos de diseño industrial, mobiliario, modelado 3D, prototipado y visualización de alta fidelidad.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=1.2">
+</head>
+<body>
+
+    <!-- Background glow elements for rich dark aesthetics -->
+    <div class="glow-bg">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="main-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">M</span>anuela Sandoval Quintana
+            </a>
+            <button class="mobile-nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link active">Inicio</a>
+                <a href="#proyectos" class="nav-link">Proyectos</a>
+                <a href="#habilidades" class="nav-link">Habilidades</a>
+                <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
+                <a href="#contacto" class="nav-link btn-contact">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <span class="hero-tagline">Diseño Industrial • Modelado 3D • Prototipado</span>
+                <h1 class="hero-title">MANUELA SANDOVAL QUINTANA</h1>
+                <p class="hero-description">
+                    Fusionando estética pura, precisión técnica y ergonomía para materializar ideas. Especializada en desarrollo de productos, mobiliario e interfaces físicas que redefinen la interacción humana.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#proyectos" class="btn btn-primary">Ver Portafolio</a>
+                    <a href="#contacto" class="btn btn-secondary">Trabajemos juntos</a>
+                </div>
+            </div>
+            <div class="hero-scroll-indicator">
+                <span class="mouse">
+                    <span class="wheel"></span>
+                </span>
+                <span class="scroll-text">Desliza para explorar</span>
+            </div>
+        </section>
+
+        <!-- Projects Grid Section -->
+        <section id="proyectos">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">Mi Trabajo</span>
+                    <h2 class="section-title">Proyectos Destacados</h2>
+                    <p class="section-description">Una muestra de diseño funcional, desde la conceptualización hasta la fabricación física.</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="mobiliario">Mobiliario & Estructuras</button>
+                    <button class="filter-btn" data-filter="producto">Diseño de Producto</button>
+                    <button class="filter-btn" data-filter="retail">Retail & POP</button>
+                    <button class="filter-btn" data-filter="sostenibilidad">Sostenibilidad & Upcycling</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Se genera dinámicamente desde script.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Project Modal -->
+        <div id="project-modal" class="modal" role="dialog" aria-hidden="true">
+            <div class="modal-backdrop"></div>
+            <div class="modal-window">
+                <button class="modal-close" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal-content">
+                    <div class="modal-media-container">
+                        <div class="modal-tabs">
+                            <button class="modal-tab-btn active" data-tab="image">
+                                <i class="fa-regular fa-images"></i> Galería & Planos
+                            </button>
+                            <button class="modal-tab-btn" data-tab="interactive" id="modal-interactive-tab-btn">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Simulación Interactiva
+                            </button>
+                        </div>
+                        <div class="modal-media">
+                            <div id="modal-image-tab" class="tab-pane active">
+                                <div class="gallery-viewport">
+                                    <img id="modal-image" src="" alt="Vista previa del proyecto">
+                                    <button class="gallery-nav gallery-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <button class="gallery-nav gallery-next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+                                    <div class="gallery-counter">1 / 1</div>
+                                </div>
+                                <div class="gallery-thumbnails">
+                                    <!-- Las miniaturas se cargan dinámicamente -->
+                                </div>
+                            </div>
+                            <div id="modal-interactive-tab" class="tab-pane">
+                                <div id="interactive-canvas-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-details">
+                        <span id="modal-category" class="modal-category-badge">Categoría</span>
+                        <h2 id="modal-title" class="modal-title">Título del Proyecto</h2>
+                        
+                        <div class="modal-meta-grid">
+                            <div class="meta-item">
+                                <span class="meta-label">Año</span>
+                                <span id="modal-year" class="meta-value">2026</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Materiales / Soft</span>
+                                <span id="modal-tech" class="meta-value">SolidWorks, Acrílico, LED</span>
+                            </div>
+                        </div>
+
+                        <div class="modal-description-wrapper">
+                            <h3>Descripción del Proyecto</h3>
+                            <p id="modal-description" class="modal-description">Detalles específicos del proyecto...</p>
+                        </div>
+
+                        <div class="modal-process-wrapper">
+                            <h3>Enfoque de Diseño</h3>
+                            <ul id="modal-bullets" class="modal-bullets">
+                                <li>Optimización ergonómica del prototipo físico.</li>
+                                <li>Modelado 3D preciso y renders fotorrealistas.</li>
+                                <li>Validación estructural de juntas y tolerancias de ensambles.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills & Process Section -->
+        <section id="habilidades">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-subtitle">Mis Competencias</span>
+                    <h2 class="section-title">Habilidades & Metodología</h2>
+                    <p class="section-description">Un balance ideal entre habilidades creativas, técnicas y herramientas avanzadas de ingeniería de producto.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Column 1: Software -->
+                    <div class="skill-card">
+                        <div class="skill-icon-box"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3>Modelado & Renders</h3>
+                        <p>Diseño y visualización fotorrealista para validar ideas antes de la manufactura.</p>
+                        <ul class="skill-tags">
+                            <li><span class="tag-dot"></span> SolidWorks</li>
+                            <li><span class="tag-dot"></span> KeyShot</li>
+                            <li><span class="tag-dot"></span> Rhinoceros 3D</li>
+                            <li><span class="tag-dot"></span> Blender</li>
+                            <li><span class="tag-dot"></span> V-Ray</li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Fabrication & Prototyping -->
+                    <div class="skill-card">
+                        <div class="skill-icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <h3>Prototipado & Manufactura</h3>
+                        <p>Fabricación de modelos a escala 1:1 e industriales para evaluación formal y funcional.</p>
+                        <ul class="skill-tags">
+                            <li><span class="tag-dot"></span> Impresión 3D</li>
+                            <li><span class="tag-dot"></span> Corte Láser & CNC</li>
+                            <li><span class="tag-dot"></span> Carpintería Fina</li>
+                            <li><span class="tag-dot"></span> Termoformado</li>
+                            <li><span class="tag-dot"></span> Resinas & Moldes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Design Process -->
+                    <div class="skill-card">
+                        <div class="skill-icon-box"><i class="fa-solid fa-compass-drafting"></i></div>
+                        <h3>Pensamiento Estratégico</h3>
+                        <p>Alineación entre viabilidad comercial, ergonómica y experiencia del usuario.</p>
+                        <ul class="skill-tags">
+                            <li><span class="tag-dot"></span> Diseño Centrado en el Usuario</li>
+                            <li><span class="tag-dot"></span> Ergonomía Cognitiva & Física</li>
+                            <li><span class="tag-dot"></span> Planos Técnicos (ISO/ANSI)</li>
+                            <li><span class="tag-dot"></span> Branding & POP</li>
+                            <li><span class="tag-dot"></span> Metodologías de Diseño</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="sobre-mi">
+            <div class="section-container">
+                <div class="about-grid">
+                    <div class="about-media">
+                        <div class="profile-container">
+                            <img src="images/MANUELA.jpeg" alt="Manuela Sandoval Quintana" class="profile-img">
+                            <div class="profile-accent-border"></div>
+                        </div>
+                    </div>
+                    <div class="about-content">
+                        <span class="section-subtitle">Detrás del Diseño</span>
+                        <h2 class="section-title">Sobre Mí</h2>
+                        <p>
+                            Soy <strong>Manuela Sandoval Quintana</strong>, diseñadora industrial graduada <strong>Cum Laude</strong> de la Universidad Icesi, actualmente cursando una especialización en mercadeo. Mi enfoque integra diseño, innovación y estrategia para desarrollar productos, experiencias y marcas con impacto sostenible y emocional.
+                        </p>
+                        <p>
+                            Tengo experiencia en investigación y desarrollo, diseño de producto, empaques, exhibiciones comerciales y comunicación visual, trabajando en empresas como <strong>Centelsa by Nexans</strong>, <strong>IKEA</strong>, <strong>Sparta Group</strong> y <strong>RTA Muebles</strong>. Además, soy cofundadora de <strong>Torú</strong>, un emprendimiento de diseño circular enfocado en transformar retazos de denim en nuevos productos mediante procesos de upcycling.
+                        </p>
+                        <p>
+                            Me apasiona crear soluciones innovadoras que conecten funcionalidad, estética y experiencia de usuario, combinando pensamiento estratégico con habilidades técnicas en modelado 3D, visualización y desarrollo conceptual. He recibido reconocimientos académicos y de diseño por proyectos enfocados en sostenibilidad, innovación y creatividad aplicada.
+                        </p>
+                        <blockquote class="about-quote">
+                            "El diseño no es solo lo que se ve o se siente. El diseño es cómo funciona."
+                        </blockquote>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">7+</span>
+                                <span class="stat-text">Proyectos Clave</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">IKEA</span>
+                                <span class="stat-text">Experiencia</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">Torú</span>
+                                <span class="stat-text">Cofundadora</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto">
+            <div class="section-container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <span class="section-subtitle">Conectemos</span>
+                        <h2 class="section-title">¿Tienes un proyecto en mente?</h2>
+                        <p class="contact-lead-text">
+                            Estoy abierta a pasantías, oportunidades de colaboración, proyectos freelance o simplemente una charla de café sobre diseño y modelado 3D.
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method-item">
+                                <div class="icon-wrapper"><i class="fa-regular fa-envelope"></i></div>
+                                <div class="method-details">
+                                    <span class="method-label">Escríbeme por Correo</span>
+                                    <a href="mailto:m.sandoval.q0123@gmail.com" class="method-value">m.sandoval.q0123@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-method-item">
+                                <div class="icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="method-details">
+                                    <span class="method-label">Ubicación</span>
+                                    <span class="method-value">Cali, Colombia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links-wrapper">
+                            <span class="social-title">Mis Canales</span>
+                            <div class="social-links">
+                                <a href="https://www.behance.net/manuelasandoval2" target="_blank" rel="noopener noreferrer" aria-label="Behance"><i class="fa-brands fa-behance"></i></a>
+                                <a href="https://www.linkedin.com/in/manuela-sandoval-406426248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="https://www.instagram.com/msq.1805?igsh=eTg1dTg1NnRucGZ3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row-2">
+                                <div class="input-group">
+                                    <input type="text" id="form-name" required placeholder=" ">
+                                    <label for="form-name">Nombre</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="email" id="form-email" required placeholder=" ">
+                                    <label for="form-email">Email</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="form-subject" required placeholder=" ">
+                                <label for="form-subject">Asunto</label>
+                            </div>
+                            <div class="input-group">
+                                <textarea id="form-message" required rows="6" placeholder=" "></textarea>
+                                <label for="form-message">Mensaje</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <span>Enviar Mensaje</span> <i class="fa-regular fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        <div id="form-success-msg" class="form-success-hidden">
+                            <i class="fa-regular fa-circle-check"></i>
+                            <h3>¡Mensaje enviado con éxito!</h3>
+                            <p>Me pondré en contacto contigo a la brevedad posible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p class="copyright">&copy; 2026 Manuela Sandoval Quintana. Todos los derechos reservados.</p>
+            <p class="crafted-by">Diseñado y codificado con pasión en Colombia.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="script.js?v=1.2"></script>
+</body>
+</html>
