@@ -766,6 +766,10 @@ h1, h2, h3, h4 {
 
 .tab-pane.active {
     opacity: 1;
+    pointer-events: none;
+}
+
+.modal.active .tab-pane.active {
     pointer-events: auto;
 }
 
