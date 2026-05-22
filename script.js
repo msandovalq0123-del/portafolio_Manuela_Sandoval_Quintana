@@ -605,35 +605,26 @@ document.addEventListener("DOMContentLoaded", () => {
             projectCards.forEach(card => {
                 const cardCategory = card.getAttribute("data-category");
                 
-                // Cancelar cualquier animación/timeout pendiente para esta tarjeta
-                if (card.dataset.timeout1) clearTimeout(Number(card.dataset.timeout1));
-                if (card.dataset.timeout2) clearTimeout(Number(card.dataset.timeout2));
-                if (card.dataset.timeout3) clearTimeout(Number(card.dataset.timeout3));
+                // Asegurar que use la transición suave definida en el CSS
+                card.style.transition = "";
                 
-                // Aplicar transición rápida temporal para el desvanecimiento
-                card.style.transition = "opacity 0.2s ease, transform 0.2s ease";
-                card.style.opacity = "0";
-                card.style.transform = "scale(0.95) translateY(10px)";
-                
-                const t1 = setTimeout(() => {
-                    if (filterValue === "all" || cardCategory === filterValue) {
-                        card.style.display = "block";
-                        const t2 = setTimeout(() => {
-                            card.style.opacity = "1";
-                            card.style.transform = "scale(1) translateY(0)";
-                            
-                            // Restaurar la transición original suave definida en CSS
-                            const t3 = setTimeout(() => {
-                                card.style.transition = "";
-                            }, 200);
-                            card.dataset.timeout3 = t3;
-                        }, 20);
-                        card.dataset.timeout2 = t2;
-                    } else {
-                        card.style.display = "none";
-                    }
-                }, 200);
-                card.dataset.timeout1 = t1;
+                if (filterValue === "all" || cardCategory === filterValue) {
+                    card.style.display = "block";
+                    // Forzar reflow del navegador para registrar el display: block antes de animar
+                    void card.offsetWidth;
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1) translateY(0)";
+                } else {
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.95) translateY(10px)";
+                    
+                    // Ocultar el elemento físicamente al finalizar la transición (400ms)
+                    setTimeout(() => {
+                        if (card.style.opacity === "0") {
+                            card.style.display = "none";
+                        }
+                    }, 400);
+                }
             });
         });
     });

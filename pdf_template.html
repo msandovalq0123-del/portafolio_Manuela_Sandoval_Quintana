@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Manuela Sandoval Quintana - Portafolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: Letter;
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 8.5in;
+            height: 11in;
+            font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+            background-color: #08090d;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            padding: 0.5in;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background glows for premium dark mode aesthetics */
+        .glow-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .glow-sphere {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.12;
+        }
+        .sphere-1 {
+            background-color: #cf7d3c;
+            top: -120px;
+            right: -100px;
+        }
+        .sphere-2 {
+            background-color: #3b82f6;
+            bottom: -150px;
+            left: -150px;
+        }
+
+        .card-container {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 19, 26, 0.75);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 0.5in;
+            display: grid;
+            grid-template-columns: 2.3in 1fr;
+            gap: 0.4in;
+            z-index: 2;
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.45);
+            position: relative;
+        }
+
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #cf7d3c, #3b82f6, transparent);
+        }
+
+        /* Left Column: Visual Profile & Quick Links */
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding-right: 0.3in;
+        }
+
+        .profile-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1.2;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(207, 125, 60, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(207, 125, 60, 0.1);
+            margin-bottom: 24px;
+            background-color: #12131a;
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.05) brightness(1.02);
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+            padding: 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.2s ease;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background-color: rgba(207, 125, 60, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: #cf7d3c;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .contact-label {
+            font-size: 7pt;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-val {
+            font-size: 8.5pt;
+            color: #e2e8f0;
+            font-weight: 500;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* Right Column: Narrative & Focus Areas */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding-top: 0.1in;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        .name-title {
+            font-size: 26pt;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff 60%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle-badge {
+            display: inline-block;
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #cf7d3c;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            border-bottom: 2px solid #cf7d3c;
+            padding-bottom: 4px;
+            margin-bottom: 24px;
+        }
+
+        .intro-p {
+            font-family: 'Inter', sans-serif;
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .intro-p strong {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .experience-section {
+            margin-bottom: 24px;
+        }
+
+        .section-h3 {
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .focus-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .focus-pill {
+            font-size: 8pt;
+            font-weight: 600;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .focus-pill.highlight {
+            background-color: rgba(207, 125, 60, 0.1);
+            border-color: rgba(207, 125, 60, 0.25);
+            color: #cf7d3c;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(207, 125, 60, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%);
+            border: 1px solid rgba(207, 125, 60, 0.2);
+            border-radius: 18px;
+            padding: 24px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .cta-desc {
+            font-size: 9.5pt;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #cf7d3c;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            font-size: 10.5pt;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(207, 125, 60, 0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 16px;
+            margin-top: 20px;
+        }
+
+        .foot-copy {
+            font-size: 8pt;
+            color: #475569;
+        }
+
+        .foot-tag {
+            font-size: 8pt;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Print adjustments */
+        @media print {
+            body {
+                background-color: #08090d !important;
+            }
+            .card-container {
+                background-color: #12131a !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+            .cta-box {
+                background-color: rgba(207, 125, 60, 0.12) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+    </div>
+
+    <div class="card-container">
+        <!-- Left Side: Profile Photo & Channels -->
+        <div class="left-col">
+            <div>
+                <div class="profile-img-wrapper">
+                    <img src="images/MANUELA.jpeg" alt="Manuela Sandoval Quintana">
+                </div>
+                
+                <div class="contact-list">
+                    <!-- Behance -->
+                    <a href="https://www.behance.net/manuelasandoval2" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.228 15.01c.71 0 1.258-.204 1.637-.611.378-.407.568-.962.568-1.666 0-.693-.189-1.246-.568-1.656-.379-.41-.927-.614-1.637-.614H5.438v4.547h2.79zm-.27-6.242c.624 0 1.11-.167 1.458-.5.348-.334.522-.79.522-1.37 0-.584-.174-1.042-.522-1.375-.348-.333-.834-.5-1.458-.5H5.438v3.745h2.52zM0 4.295C0 2.213 1.626.5 3.667.5h16.666C22.374.5 24 2.213 24 4.295v15.41C24 21.787 22.374 23.5 20.333 23.5H3.667C1.626 23.5 0 21.787 0 19.705V4.295zm13.111 6.81c0 1.488-.363 2.684-1.088 3.585-.726.902-1.782 1.353-3.17 1.353H3.298V6.521h6.29c1.296 0 2.296.388 2.998 1.163.702.775 1.053 1.83 1.053 3.167v.254zm9.324-1.374c-.042-.647-.234-1.196-.576-1.644-.342-.448-.823-.672-1.442-.672-.556 0-1.01.19-1.36.568-.35.378-.564.912-.64 1.602l4.018.146zm1.144 1.306h-5.263c.049.778.292 1.376.73 1.794.437.418 1.01.627 1.717.627.994 0 1.73-.396 2.207-1.189l1.197.668c-.765 1.314-2.022 1.97-3.772 1.97-1.474 0-2.628-.485-3.463-1.455-.835-.97-1.253-2.288-1.253-3.953v-.376c0-1.682.42-3.003 1.259-3.963.839-.96 1.972-1.44 3.402-1.44 1.41 0 2.5.474 3.268 1.42.769.946 1.147 2.26 1.137 3.94l-.01.972zM21.94 8.016h-4.085v-.909H21.9v.909z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Behance</span>
+                            <span class="contact-val">manuelasandoval2</span>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/manuela-sandoval-406426248/" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43c-1.14 0-2.06-.92-2.06-2.06 0-1.14.92-2.06 2.06-2.06 1.14 0 2.06.92 2.06 2.06 0 1.14-.92 2.06-2.06 2.06zM20.45 20.45h-3.56v-5.57c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67h-3.56V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-val">manuela-sandoval</span>
+                        </div>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/msq.1805?igsh=eTg1dTg1NnRucGZ3&utm_source=qr" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Instagram</span>
+                            <span class="contact-val">@msq.1805</span>
+                        </div>
+                    </a>
+
+                    <!-- Correo -->
+                    <a href="mailto:m.sandoval.q0123@gmail.com" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Correo</span>
+                            <span class="contact-val">m.sandoval.q0123</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Details -->
+            <div style="font-size: 8pt; color: #475569; padding-bottom: 4px;">
+                Cali, Colombia
+            </div>
+        </div>
+
+        <!-- Right Side: Presentation & Description -->
+        <div class="right-col">
+            <div>
+                <header>
+                    <h1 class="name-title">MANUELA SANDOVAL QUINTANA</h1>
+                    <div class="subtitle-badge">Diseñadora Industrial</div>
+                </header>
+
+                <div class="experience-section">
+                    <p class="intro-p">
+                        Soy diseñadora industrial graduada <strong>Cum Laude</strong> de la Universidad Icesi, actualmente cursando una especialización en mercadeo. Mi enfoque profesional integra el diseño, la innovación y la estrategia para desarrollar productos, empaques, exhibiciones y marcas que generen un impacto sostenible y emocional.
+                    </p>
+                    <p class="intro-p">
+                        Tengo experiencia en investigación y desarrollo de producto, comunicación visual y retail en empresas destacadas como <strong>IKEA</strong>, <strong>Centelsa by Nexans</strong>, <strong>Sparta Group</strong> y <strong>RTA Muebles</strong>.
+                    </p>
+                    <p class="intro-p">
+                        Además, soy cofundadora de <strong>Torú</strong>, un emprendimiento de diseño circular enfocado en transformar retazos de denim en nuevos productos comerciales mediante procesos innovadores de upcycling.
+                    </p>
+                </div>
+
+                <h3 class="section-h3">Áreas de Especialidad</h3>
+                <div class="focus-grid">
+                    <span class="focus-pill highlight">Diseño Circular & Sostenibilidad</span>
+                    <span class="focus-pill">Mobiliario RTA & Juntas</span>
+                    <span class="focus-pill">Modelado 3D de Alta Fidelidad</span>
+                    <span class="focus-pill">Exhibición Comercial & POP</span>
+                    <span class="focus-pill">Ingeniería de Empaques</span>
+                    <span class="focus-pill">Estrategia de Marca</span>
+                </div>
+            </div>
+
+            <!-- Interactive Portfolio Call to Action -->
+            <div>
+                <div class="cta-box">
+                    <p class="cta-desc">
+                        Mi portafolio web oficial incluye vistas en 360 grados, planos de ensambles, despieces interactivos y simulaciones en tiempo real de mis proyectos:
+                    </p>
+                    <a href="https://msandovalq0123-del.github.io/portafolio_Manuela_Sandoval_Quintana/" class="cta-btn" target="_blank">Ver Portafolio Interactivo</a>
+                </div>
+
+                <footer>
+                    <span class="foot-copy">&copy; 2026 Manuela Sandoval Quintana</span>
+                    <span class="foot-tag">Diseño & Estrategia</span>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
