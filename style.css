@@ -1862,3 +1862,27 @@ footer {
         text-align: center;
     }
 }
+
+/* Custom interactive links inside bio text */
+.inline-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(207, 125, 60, 0.4);
+    padding: 0 2px;
+    font-weight: 500;
+}
+.inline-link:hover {
+    color: #e59758;
+    border-bottom-style: solid;
+}
+.company-name-link {
+    color: var(--color-text-main);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-fast);
+}
+.company-name-link:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}
+
